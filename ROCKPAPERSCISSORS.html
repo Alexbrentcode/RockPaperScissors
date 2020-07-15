@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+        let playerScore = 0;
+        let computerScore = 0;
+        let drawsScore = 0;
+        let turns = 0;
+      //Creates the random choice function of the computer
+      function computerSelection() {
+          //Gives the computer the three possible choicesfff
+          let choices = ['ROCK', 'PAPER', 'SCISSORS'];
+          //Then creates a random whole number answer between 0 - 1 * length of the choices variable (3)
+          let randomAnswer = Math.floor(Math.random() * choices.length);
+          //THEN returns the choices array with the random*3 function to seelect one of these strings.
+          return choices[randomAnswer].toUpperCase();
+      };
+
+
+      function playRound(computerChoice, playerChoice) {
+        playerChoice = prompt("Rock, Paper, or Scissors?");
+        computerSelection();
+        computerChoice = computerSelection();
+        console.log(`The computer has chosen ${computerChoice}`)
+        if(computerChoice === playerChoice.toUpperCase()) {
+            console.log('You Draw CUNT');
+            return drawsScore++;
+        } else if(playerChoice.toUpperCase() == 'ROCK' && computerChoice == 'PAPER') {
+            console.log('You lost - Rock is defeated by Paper!'); 
+            return computerScore++;
+        } else if(playerChoice.toUpperCase() == 'PAPER' && computerChoice == 'SCISSORS') {
+            console.log('You lost - Paper is defeated by Scissors');
+            return computerScore++;
+        } else if (playerChoice.toUpperCase() == 'SCISSORS' && computerChoice == 'ROCK') {
+            console.log('You lost - Scissors is defeated by Rock!');
+            return computerScore++;
+        } else if (playerChoice.toUpperCase() == 'SCISSORS' && computerChoice == 'PAPER') {
+            console.log('You won! Scissors beats Paper!');
+            return playerScore++;
+        } else if (playerChoice.toUpperCase() == 'PAPER' && computerChoice == 'ROCK') {
+            console.log('You won! - Paper beats Rock!');
+            return playerScore++;
+        } else if (playerChoice.toUpperCase() == 'ROCK' && computerChoice == 'SCISSORS') {
+            console.log('You won! - Rock beats Scissors!');
+            return playerScore++;
+        } else {
+           return 'Something went wrong!';
+           // Debugging mistake reference: ~2 hours spent debugging because I had used '===' instead of '==' to compare playerChoice/ computerChoice
+       };
+      };
+      
+      function playGame() {
+          while(turns < 5) {
+              playRound();
+              turns++;
+          }
+          // Turn counter begins at 0, when it is less than 5 it iterates through playing rounds until turns = 5 is met
+          if(playerScore < computerScore) {
+              console.log("YOU LOSE")
+          } else if (playerScore > computerScore) {
+              console.log("YOU WIN")
+          } else {
+              console.log("IT'S A DRAW")
+          };
+          console.log(`The final scores were Player: ${playerScore}, Computer: ${computerScore}, and Draws: ${drawsScore}`);
+      };
+
+  </script>
+</body>
+</html>
